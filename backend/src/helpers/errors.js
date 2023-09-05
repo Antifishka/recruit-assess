@@ -12,6 +12,13 @@ class ValidatoinError extends RecruitAssessError {
     }
 }
 
+class NotAuthorizedError extends RecruitAssessError {
+    constructor(message) {
+        super(message);
+        this.status = 401;
+    }
+}    
+
 class NotFoundError extends RecruitAssessError {
     constructor(message) {
         super(message);
@@ -29,6 +36,7 @@ class ConflictError extends RecruitAssessError {
 module.exports = {
     RecruitAssessError,
     ValidatoinError,
+    NotAuthorizedError,
     NotFoundError,
     ConflictError,
 }

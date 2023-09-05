@@ -1,7 +1,8 @@
 const express = require('express');
 const logger = require('morgan');
 const cors = require('cors');
-const questionsRouter = require('./src/routes/api/questions');
+const authRouter = require('./src/routes/api/authRouter');
+const questionsRouter = require('./src/routes/api/questionsRouter');
 const { errorHandler } = require('./src/helpers/apiHelpers');
 
 const app = express();
@@ -12,6 +13,7 @@ app.use(logger(formatsLogger));
 app.use(cors());
 app.use(express.json());
 
+app.use('/api/auth', authRouter);
 app.use('/api/questions', questionsRouter);
 
 app.use(errorHandler);

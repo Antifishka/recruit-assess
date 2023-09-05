@@ -8,5 +8,5 @@ const getQuestions = async (req, res, next) => {
 }
 
 module.exports = {
-    getQuestions,
+  getQuestions,
 }
