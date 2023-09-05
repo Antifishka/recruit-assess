@@ -1,5 +1,5 @@
 const { User } = require('../models/userModel');
-const { RegistrationConflictError, NotAuthorizedError } = require('../helpers/errors');
+const { ConflictError, NotAuthorizedError } = require('../helpers/errors');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
@@ -7,7 +7,7 @@ const signup = async (email, password, nickname, avatarURL) => {
     const user = await User.findOne({ email });
     
     if (user) {
-        throw new RegistrationConflictError("Email in use");
+        throw new ConflictError("Email in use");
     };
 
     const newUser = await User.create({
