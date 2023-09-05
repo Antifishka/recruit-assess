@@ -2,6 +2,7 @@ const {
   signup,
   login,
   logout,
+  updateAvatar,
 } = require('../services/authService')
 
 const ctrlSignup = async (req, res) => { 
@@ -34,9 +35,19 @@ const ctrlCurrent = async (req, res) => {
   res.status(200).json({user});
 };
 
+const ctrlChangeAvatar = async (req, res) => { 
+  const { _id } = req.user;
+  const { path } = req.file;
+    
+  const user = await updateAvatar(_id, path);
+
+  res.status(200).json({ user });
+};
+
 module.exports = {
   ctrlSignup,
   ctrlLogin,
   ctrlLogout,
   ctrlCurrent,
+  ctrlChangeAvatar,
 }

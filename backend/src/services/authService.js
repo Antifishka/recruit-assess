@@ -43,8 +43,16 @@ const logout = async (_id ) => {
     await User.findByIdAndUpdate(_id, { token: null });
 };
 
+const updateAvatar = async (_id, avatarURL) => {
+    const user = await User.findByIdAndUpdate(_id, { avatarURL });
+    user.avatarURL = avatarURL;
+
+    return user;
+};
+
 module.exports = {
     signup,
     login,
     logout,
+    updateAvatar,
 };
