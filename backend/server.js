@@ -6,7 +6,7 @@ const { DB_HOST, PORT = 3000 } = process.env;
 
 const start = async () => {
   try {
-    // await mongoose.connect(DB_HOST);
+    await mongoose.connect(DB_HOST);
 
     app.listen(PORT);
   } catch (err) {
