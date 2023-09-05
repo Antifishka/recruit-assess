@@ -1,15 +1,14 @@
-const app = require('./app');
+const mongoose = require("mongoose");
+const app = require("./app");
 require('dotenv').config();
 
-const PORT = process.env.PORT || 3000;
+const { DB_HOST, PORT = 3000 } = process.env;
 
 const start = async () => {
   try {
-    app.listen(PORT, (err) => {
-      if (err) console.error(`Server not running. Error message: ${err.message}`)
+    // await mongoose.connect(DB_HOST);
 
-      console.log(`Server running. Use our API on port: ${PORT}`);
-    });
+    app.listen(PORT);
   } catch (err) {
     console.error(`Failed to launch application with error: ${err.message}`);
     process.exit(1);
