@@ -1,16 +1,21 @@
-const fs = require('fs/promises')
-const path = require('path');
-require('colors');
-
-const questionsPath = path.join(__dirname, "questions.json");
+const { Question } = require('../models/questionModel');
 
 const listQuestions = async () => {
   try {
-    const data = await fs.readFile(questionsPath, 'utf8');
-    const questions = JSON.parse(data);
-    console.table(questions);
-    console.log(`Total contacts: ${questions.length}`.green);
-    return questions;
+    const questions = await Question.find({})
+    const totalQuestions = await Question.countDocuments();
+   
+    return { questions, totalQuestions };
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const addQuestion = async (questionData) => {
+  try {
+    const newQuestion  = await Question.create(questionData);
+
+    return newQuestion;
   } catch (error) {
     console.error(error);
   }
@@ -18,4 +23,5 @@ const listQuestions = async () => {
 
 module.exports = {
   listQuestions,
+  addQuestion,
 };

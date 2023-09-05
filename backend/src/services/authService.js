@@ -33,10 +33,9 @@ const login = async (email, password) => {
     };
 
     const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
-    await User.findByIdAndUpdate(user._id, { token });
-    user.token = token;
+    const userWithToken = await User.findByIdAndUpdate(user._id, { token }, {new: true});
      
-    return user;
+    return userWithToken;
 };
 
 const logout = async (_id ) => {
@@ -44,8 +43,7 @@ const logout = async (_id ) => {
 };
 
 const updateAvatar = async (_id, avatarURL) => {
-    const user = await User.findByIdAndUpdate(_id, { avatarURL });
-    user.avatarURL = avatarURL;
+    const user = await User.findByIdAndUpdate(_id, { avatarURL }, {new: true});
 
     return user;
 };
