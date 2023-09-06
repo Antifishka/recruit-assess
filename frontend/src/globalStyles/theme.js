@@ -29,8 +29,6 @@ export const themeStyles = {
         normal: '1px solid #373737',
     },
     radii: {
-        none: '0',
-        button: '10px',
         normal: '20px',
         round: '50%',
     },
@@ -40,7 +38,6 @@ export const themeStyles = {
         line: '0px 3.43693px 3.43693px rgba(0, 0, 0, 0.06), inset 0px -1.71846px 3.43693px #AE7BE3, inset 0px 3.43693px 2.5777px #FBF8FF',
         avatar: '0px 4.39163px 4.39163px rgba(0, 0, 0, 0.06), inset 0px -2.19582px 4.39163px #AE7BE3, inset 0px 4.39163px 3.29372px #FBF8FF',
         innerAvatar: '0px 4.39163px 4.39163px rgba(0, 0, 0, 0.06), 0px -2.19582px 4.39163px #AE7BE3, 0px 4.39163px 3.29372px #FBF8FF',
-        button: '0px 3.43693px 3.43693px rgba(0, 0, 0, 0.25)',
     },
     transition: {
         main: '250ms cubic-bezier(0.4, 0, 0.2, 1);',

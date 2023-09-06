@@ -1,7 +1,7 @@
 import { Box } from '../Box/Box';
 import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
-import { AppBar } from '../AppBar/AppBar';
+import { AppBar } from '../AppBar';
 import { theme } from '../../globalStyles/theme';
 
 export const Layout = () => {
