@@ -1,17 +1,23 @@
-import { useContext, createContext } from 'react';
+import { Routes, Route } from "react-router-dom";
+import { FontStyles } from './globalStyles/fontStyles';
+import { GlobalStyle } from './globalStyles/globalStyle';
+import { Layout } from "./components/Layout/Layout";
 
-const Context = createContext('apple');
-const MyChild = () => {
-  const fruit = useContext(Context);
-  return <div>{fruit}</div>
-}
+const App = () => {
+  return (  
+    <>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<div>Wellcome!</div>} />
+          <Route path="/test" element={<div>Test</div>} />
+          <Route path="*" element={<div>Wellcome!</div>} />
+        </Route>  
+      </Routes>
 
-function App() {
-  return (
-    <Context.Provider value={'orange'}>
-      <MyChild />
-    </Context.Provider>
-  )
-}
-
-export default App
+      <FontStyles />
+      <GlobalStyle />
+    </>  
+  );
+};
+ 
+export default App;
