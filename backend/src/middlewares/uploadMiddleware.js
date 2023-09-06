@@ -1,7 +1,6 @@
 const cloudinary = require("cloudinary").v2;
 const { CloudinaryStorage } = require("multer-storage-cloudinary");
 const multer = require("multer");
-const path = require("path");
 const dotenv = require("dotenv");
 dotenv.config();
 
@@ -12,7 +11,7 @@ cloudinary.config({
 });
 
 const storage = new CloudinaryStorage({
-  cloudinary: cloudinary,
+  cloudinary,
   folder: "avatars",
   allowedFormats: ['jpg', 'jpeg', 'png'],
   transformation: [
