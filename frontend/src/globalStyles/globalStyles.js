@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import 'modern-normalize';
+import { theme } from './theme';
 
 export const GlobalStyle = createGlobalStyle`
   html {
@@ -8,10 +9,10 @@ export const GlobalStyle = createGlobalStyle`
   body {
     height: 100%;
     margin: 0;
-    font-family: 'Baloo 2', sans-serif;
-    font-size: 16;
-    font-weight: 400;
-    line-height: 1.2;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: ${theme.fontWeights.medium};
+    font-size: ${theme.fontSizes.xs};
+    line-height: ${theme.lineHeights.text};
   }
   #root { 
     position: relative;
