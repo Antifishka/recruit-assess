@@ -32,7 +32,7 @@ const login = async (email, password) => {
         email: user.email,
     };
 
-    const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
+    const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '6h' });
     const userWithToken = await User.findByIdAndUpdate(user._id, { token }, {new: true});
      
     return userWithToken;

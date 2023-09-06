@@ -12,7 +12,6 @@ const authMiddleware = async (req, res, next) => {
         }
 
         const tokenData = jwt.verify(token, process.env.JWT_SECRET);
-        console.log("tokenData", tokenData);
         const user = await User.findById(tokenData._id, '-password -__v');
 
         if (!user || user.token !== token) {
