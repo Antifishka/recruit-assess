@@ -1,4 +1,4 @@
-export const selectQuestions = state => state.questions.quesions;
+export const selectQuestions = state => state.questions.questions;
 
 export const selectIsLoading = state => state.questions.isLoading;
 
