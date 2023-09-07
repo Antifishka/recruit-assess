@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchQuestions } from "./contacts-operations";
+import { fetchQuestions } from "./questions-operations";
 
 const questionsSlice = createSlice({
     name: "questions",
@@ -25,4 +25,4 @@ const questionsSlice = createSlice({
     }    
 });
 
-export const  questions = questionsSlice.reducer;
+export const questionsReducer = questionsSlice.reducer;

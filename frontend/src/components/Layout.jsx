@@ -1,8 +1,9 @@
-import { Box } from '../Box/Box';
+import { Box } from './Box/Box';
 import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
-import { AppBar } from '../AppBar';
-import { theme } from '../../globalStyles/theme';
+import { AppBar } from './AppBar';
+import { theme } from '../globalStyles/theme';
+import { Toaster } from 'react-hot-toast';
 
 export const Layout = () => {
   return (
@@ -17,6 +18,8 @@ export const Layout = () => {
       <Suspense fallback={null}>
         <Outlet />
       </Suspense> 
+
+      <Toaster position="top-right" reverseOrder={false} />
     </Box>
   );
 };

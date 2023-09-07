@@ -1,5 +1,5 @@
-export const selectQuestions = state => state.quesions.quesions;
+export const selectQuestions = state => state.questions.quesions;
 
-export const selectIsLoading = state => state.quesions.isLoading;
+export const selectIsLoading = state => state.questions.isLoading;
 
-export const selectError = state => state.quesions.error;
+export const selectError = state => state.questions.error;
