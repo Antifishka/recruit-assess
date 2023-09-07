@@ -1,9 +1,9 @@
 import { Helmet } from 'react-helmet';
-import { Box } from "../../components/Box/Box";
-import { theme } from '../../globalStyles/theme';
-import imgPath from '../../assets/images/twitter.png';
-import imgPathRetina from '../../assets/images/twitter@2x.png';
-import { StyledLink } from './Home.styled';
+import { Box } from "../components/Box/Box";
+import { theme } from '../globalStyles/theme';
+import imgPath from '../assets/images/twitter.png';
+import imgPathRetina from '../assets/images/twitter@2x.png';
+import { NavLink } from "react-router-dom";
 
 export default function Home() {
     const imgURL = `${imgPath} 1x, ${imgPathRetina} 2x`;
@@ -31,9 +31,10 @@ export default function Home() {
                 alt="tweetsbook"
                 width="200px" />
             
-            <StyledLink to="/register">
+            <NavLink to="/register"
+                className="text-background border-b hover:text-accent focus:text-accent transition duration-300 ease-in-out">
                 Don&apos;t have an account? Sign Up
-            </StyledLink>
+            </NavLink>
         </Box>
     );
 }

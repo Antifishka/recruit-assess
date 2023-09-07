@@ -7,6 +7,11 @@ export const AppBar = () => {
                 <NavLink to="/" end className="navigation__link">Home</NavLink>
                 <NavLink to="/tests" className="navigation__link">Tests</NavLink>
             </nav>
+
+            <NavLink to="/login"
+                className="auth__link">
+                Login
+            </NavLink>
         </header>
     );
 };
