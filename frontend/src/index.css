@@ -62,15 +62,35 @@
     }
 
     .navigation__link.active{
-        @apply text-secondary bg-background
+        @apply text-secondary bg-background;
     }
 
     .auth__link{
-        @apply font-medium uppercase text-xs sm:text-s hover:text-accent focus-visible:text-accent
-            transition duration-300 ease-in-out
+        @apply font-medium uppercase text-xs sm:text-s hover:text-accent focus-visible:text-accent transition duration-300 ease-in-out
     }
 
     .auth__link.active { 
         @apply text-background
+    }
+
+    .form{
+        @apply flex flex-col gap-5 max-w-[360px] mx-auto mb-5 text-center
+    }
+
+    .form__label{
+        @apply relative w-full text-left text-s focus-within:text-accent
+    }
+
+    .form__input{
+        @apply mt-[2px] p-2 pl-[28px] w-full border border-border outline-none rounded-md font-title text-s text-primary bg-white 
+            placeholder:text-xs focus:border-accent
+    }
+
+    .form__icon{
+        @apply absolute top-[32px] left-2
+    }
+
+    .form__error {
+        @apply text-xxs text-error
     }
 }    

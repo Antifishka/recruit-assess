@@ -20,7 +20,11 @@ export default {
       border: "rgb(226, 229, 232)",
       gradient: "linear-gradient(114.99deg, #471CA9 -0.99%, #5736A3 54.28%, #4B2A99 78.99%)",
       transparent: "transparent",
+      error: "rgb(255, 121, 135)",
     },
+    fontFamily: {
+      'title': ['"Montserrat", sans-serif'],
+    },  
     fontSize: {
       xxs: '12px',
       xs: '14px',

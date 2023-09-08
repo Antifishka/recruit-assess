@@ -10,12 +10,14 @@ const signup = async (email, password, nickname, avatarURL) => {
         throw new ConflictError("Email in use");
     };
 
-    const newUser = await User.create({
+    await User.create({
         email,
         password,
         nickname,
         avatarURL,
     });
+
+    const newUser = await login(email, password);
     
     return newUser;
 };

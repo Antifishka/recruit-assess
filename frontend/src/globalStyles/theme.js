@@ -15,18 +15,11 @@ export const themeStyles = {
         l: '32px',
         xl: '64px',
     },
-    fontWeights: {
-        medium: 500,
-        semiBold: 600,
-    },
     lineHeights: {
         text: 1.2,
     },
     sizes: {
         maxWidth: '1280px',
-    },
-    borders: {
-        normal: '1px solid #373737',
     },
     radii: {
         normal: '20px',
