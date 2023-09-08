@@ -29,8 +29,8 @@ export default {
       xxs: '12px',
       xs: '14px',
       s: '16px',
-      m: '20px',
-      l: '32px',
+      m: '32px',
+      l: '48px',
       xl: '64px',
     },
     extend: {
