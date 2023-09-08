@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { selectQuestions } from "../redux/questions/questions-selectors";
 import { QuestionItem } from "./QuestionItem";
+import { Button } from "./Button";
 
 export const QuestionList = () => {
     const questions = useSelector(selectQuestions);
@@ -8,10 +9,11 @@ export const QuestionList = () => {
 
     return (
         <>
-            <ul className="flex flex-col items-center gap-9"> 
+            <ul className="flex flex-col items-center gap-9 mb-6"> 
                 {questions?.map(({ _id, title, description, options, answer }) =>
                     <QuestionItem
                         key={_id}
+                        id={_id}
                         title={title}
                         description={description}
                         options={options}
@@ -19,7 +21,8 @@ export const QuestionList = () => {
                 )}
             </ul>
 
-            <div>Total questions: {questions?.length}</div>
+            <Button type="submit"
+                className='w-full'>Result</Button>
         </>
     )        
 };

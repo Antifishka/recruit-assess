@@ -1,4 +1,8 @@
-import { lazy } from "react";
+import { lazy, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { useAuth } from "./hooks";
+import authOperations from './redux/auth/auth-operations';
+import { Loader } from './components/Loader';
 import { Routes, Route } from "react-router-dom";
 import { Layout } from "./components/Layout";
 import { RestrictedRoute } from './components/RestrictedRoute';
@@ -9,9 +13,16 @@ const LoginPage = lazy(() => import('./pages/Login'));
 const Tests = lazy(() => import('./pages/Tests'));
 
 const App = () => {
-  return (  
-    <>
-      <Routes>
+  const dispatch = useDispatch();
+  const { isRefreshing } = useAuth();
+
+  useEffect(() => {
+    dispatch(authOperations.refreshUser());
+  }, [dispatch]);
+
+  return isRefreshing
+    ? <Loader />
+    : <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
 
@@ -27,9 +38,7 @@ const App = () => {
 
           <Route path="*" element={<Home />} />
         </Route>  
-      </Routes>
-    </>  
-  );
+      </Routes> 
 };
  
 export default App;
