@@ -7,7 +7,7 @@ export const fetchQuestions = createAsyncThunk(
     "questions/fetchAll",
     async (_, thunkAPI) => {
         try {
-            const { data } = await axios.get('/api/questions');
+            const { data } = await axios.get('/questions');
             return data;
         } catch (e) {
             return thunkAPI.rejectWithValue(e.message);

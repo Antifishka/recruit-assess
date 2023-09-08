@@ -13,8 +13,8 @@ app.use(logger(formatsLogger));
 app.use(cors());
 app.use(express.json());
 
-app.use('/api/auth', authRouter);
-app.use('/api/questions', questionsRouter);
+app.use('/auth', authRouter);
+app.use('/questions', questionsRouter);
 
 app.use(errorHandler);
 
