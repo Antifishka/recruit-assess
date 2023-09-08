@@ -1,10 +1,15 @@
+import { useDispatch } from "react-redux";
 import { useMediaQuery } from 'usehooks-ts';
+import { deleteQuestion } from "../redux/questions/questions-operations";
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import { MdOutlineEdit } from 'react-icons/md';
 import PropTypes from 'prop-types';
 
 export const QuestionItem = ({ id, title, description, options }) => {
+    const dispatch = useDispatch();
     const matches = useMediaQuery('(min-width: 380px)');
+
+    const handleDelete = () => dispatch(deleteQuestion(id));
 
     return (
         <li key={id}
@@ -24,10 +29,8 @@ export const QuestionItem = ({ id, title, description, options }) => {
                             className='fill-background'/>
                     </button>
                     
-                    <button type="button"
-                        className='question__btn'
-                        // onClick={handleDelete}
-                    >
+                    <button type="button" onClick={handleDelete}
+                        className='question__btn'>
                         <RiDeleteBin6Line size={matches ? "20" : "17"}
                             className='fill-background'/>
                     </button>

@@ -21,7 +21,7 @@ export default function Tests() {
     const showContacs = isLoading && !error;
 
     return (
-        <main>
+        <main className='text-center'>
             <Helmet>
                 <title>Tests</title>
             </Helmet>
@@ -29,6 +29,12 @@ export default function Tests() {
             <AddButton />
 
             {showContacs ? <Loader /> : <QuestionList />}
+
+            <button type="submit"
+                className='inline-block max-w-[680px] w-full mx-auto mb-6 px-[14px] py-[12px] rounded-lg shadow-button font-medium uppercase sm:text-s text-secondary bg-background
+                    transition duration-300 ease-in-out hover:bg-accent focus:bg-accent hover:text-primary focus:text-primary'>
+                Result
+            </button>
         </main>
     );
 }
