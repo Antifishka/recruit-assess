@@ -36,3 +36,15 @@ export const deleteQuestion = createAsyncThunk(
         }
     }
 );
+
+export const updateQuestion = createAsyncThunk(
+    'questions/updateQuestion',
+    async ({ title, description, options, answer, id}, { rejectWithValue }) => {
+        try {
+            const response = await axios.patch(`/questions/${id}`, { title, description, options, answer });
+            return response.data;
+        } catch (error) {
+            return rejectWithValue(error.message);
+        }
+    }
+);

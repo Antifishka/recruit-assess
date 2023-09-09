@@ -30,7 +30,6 @@ const removeQuestion = async (req, res, next) => {
 
 const changeQuestion = async (req, res, next) => {
     const { questionId } = req.params;
-    // const { _id: owner } = req.user;
 
     const updatedQuestion = await updateQuestion(questionId , req.body);
 

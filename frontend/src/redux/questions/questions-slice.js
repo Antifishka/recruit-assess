@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchQuestions, addQuestion ,deleteQuestion } from "./questions-operations";
+import { fetchQuestions, addQuestion, deleteQuestion, updateQuestion } from "./questions-operations";
 
 const questionsSlice = createSlice({
     name: "questions",
@@ -44,6 +44,19 @@ const questionsSlice = createSlice({
                 state.questions.splice(index, 1);
             })
             .addCase(deleteQuestion.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.payload;
+            })
+            .addCase(updateQuestion.pending, (state) => {
+                state.isLoading = true;
+            })
+            .addCase(updateQuestion.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.error = null;
+                const index = state.questions.findIndex(question => question.id === action.payload.id);
+                state.questions.splice(index, 1, action.payload.updatedQuestion);
+            })
+            .addCase(updateQuestion.rejected, (state, action) => {
                 state.isLoading = false;
                 state.error = action.payload;
             })

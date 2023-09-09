@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { ReactComponent as Icon }  from '../assets/icons/plus.svg';
 import { Modal } from "./Modal";
-import QuestonEditor from "./QuestonEditor";
+import QuestonEditor from "./QuestionEditor";
 
 export const AddButton = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);

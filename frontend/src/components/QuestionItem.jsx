@@ -1,19 +1,24 @@
+import { useState } from 'react';
 import { useDispatch } from "react-redux";
 import { useMediaQuery } from 'usehooks-ts';
 import { deleteQuestion } from "../redux/questions/questions-operations";
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import { MdOutlineEdit } from 'react-icons/md';
+import { Modal } from "./Modal";
+import QuestionEditorUpdate from './QuestionEditorUpdate';
 import PropTypes from 'prop-types';
 
 export const QuestionItem = ({ id, title, description, options }) => {
     const dispatch = useDispatch();
     const matches = useMediaQuery('(min-width: 380px)');
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const toggleModal = () => setIsModalOpen(state => !state);
 
     const handleDelete = () => dispatch(deleteQuestion(id));
 
     return (
-        <li key={id}
-            className="max-w-[680px] w-full px-5 py-4 border border-border rounded-3xl">
+        <li className="max-w-[680px] w-full px-5 py-4 border border-border rounded-3xl">
             <div className='flex justify-between items-start'>
                 <div className='mb-4 px-[14px] py-[12px] max-w-max rounded-lg shadow-button font-medium uppercase text-xs sm:text-s text-primary bg-secondary
                 transition duration-300 ease-in-out hover:bg-accent focus-visible:bg-accent cursor-pointer'>
@@ -22,14 +27,14 @@ export const QuestionItem = ({ id, title, description, options }) => {
 
                 <div className='flex'>
                     <button type="button"
-                        className='question__btn'
-                    // onClick={toggleModal}
-                    >
+                        onClick={toggleModal}
+                        className='question__btn'>
                         <MdOutlineEdit size={matches ? "20" : "17"}
                             className='fill-background'/>
                     </button>
                     
-                    <button type="button" onClick={handleDelete}
+                    <button type="button"
+                        onClick={handleDelete}
                         className='question__btn'>
                         <RiDeleteBin6Line size={matches ? "20" : "17"}
                             className='fill-background'/>
@@ -39,16 +44,19 @@ export const QuestionItem = ({ id, title, description, options }) => {
             
             <p className='mb-4 text-xs text-center'>{description}</p>
 
-            {options?.map((option ) =>
-                <>
-                    <div className='px-4 py-3'>
-                        <label className='flex items-center gap-2'>
-                            <input type='radio' />
-                            <span className='text-xs text-left'>{option}</span>
-                        </label>
-                    </div>
-                </>
+            {options?.map((option, idx ) =>
+                <div key={idx} className='px-4 py-3'>
+                    <label className='flex items-center gap-2'>
+                        <input type='radio' />
+                        <span className='text-xs text-left'>{option}</span>
+                    </label>
+                </div>
             )}
+
+            {isModalOpen && (
+                <Modal onClose={toggleModal}>
+                    <QuestionEditorUpdate onUpdate={toggleModal} id={id}/>
+                </Modal>)}
         </li>
     )
 }
