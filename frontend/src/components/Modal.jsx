@@ -1,7 +1,5 @@
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { Content } from './Modal.styled';
-import { Box } from '../Box/Box';
 import PropTypes from 'prop-types';
 
 const modalRoot = document.querySelector('#modal-root');
@@ -31,17 +29,14 @@ export const Modal = ({ onClose, children }) => {
         }
     }
 
-    return createPortal( 
-        <Box position="fixed"
-            top={0}
-            left={0}
-            zIndex="10"
-            width="100vw"
-            height="100vh"
-            bg="rgba(0, 0, 0, 0.5)"
+    return createPortal(  
+        <div className='fixed top-0 left-0 z-10 w-screen h-screen bg-backdrop'
             onClick={handleBackdropClick}>
-            <Content>{children}</Content>
-        </Box>,
+            <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-[340px] w-[calc(100vw - 180px)] md:w-[512px]
+                p-8 bg-white rounded-2xl shadow-box'>
+                {children}
+            </div>
+        </div>,
         modalRoot,
     )
 }

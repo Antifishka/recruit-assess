@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchQuestions, deleteQuestion } from "./questions-operations";
+import { fetchQuestions, addQuestion ,deleteQuestion } from "./questions-operations";
 
 const questionsSlice = createSlice({
     name: "questions",
@@ -21,6 +21,18 @@ const questionsSlice = createSlice({
             .addCase(fetchQuestions.rejected, (state, action) => {
                 state.isLoading = false;
                 state.error = action.payload;
+            })
+            .addCase(addQuestion.pending, (state) => {
+                state.isLoading = true;
+            })
+            .addCase(addQuestion.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.error = null;
+                state.questions.push(action.payload);
+            })
+            .addCase(addQuestion.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.payload.newQuestion;
             })
             .addCase(deleteQuestion.pending, (state) => {
                 state.isLoading = true;

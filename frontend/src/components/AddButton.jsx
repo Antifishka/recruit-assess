@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { ReactComponent as Icon }  from '../assets/icons/plus.svg';
-import { Modal } from "./Modal/Modal";
+import { Modal } from "./Modal";
 import QuestonEditor from "./QuestonEditor";
 
 export const AddButton = () => {

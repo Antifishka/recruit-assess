@@ -7,7 +7,7 @@ export const QuestionList = () => {
     console.log("questions", questions);
 
     return (
-        <ul className="flex flex-col items-center gap-9 mb-6"> 
+        <ul className="grow shrink basis-auto flex flex-col items-center gap-9 mb-6"> 
             {questions?.map(({ _id, title, description, options, answer }) =>
                 <QuestionItem
                     key={_id}

@@ -1,18 +1,11 @@
-import { Box } from './Box/Box';
 import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
 import { AppBar } from './AppBar';
-import { theme } from '../globalStyles/theme';
 import { Toaster } from 'react-hot-toast';
 
 export const Layout = () => {
   return (
-    <Box
-      position="relative"
-      minHeight="100%"
-      maxWidth={theme.sizes.maxWidth}
-      m="0 auto"
-      p={["0 20px", "0 20px", "0 32px"]}>
+    <div className='flex flex-col h-full max-w-[1280px] my-0 mx-auto px-[20px] md:px-6'>
       <AppBar />
 
       <Suspense fallback={null}>
@@ -20,6 +13,7 @@ export const Layout = () => {
       </Suspense> 
 
       <Toaster position="top-right" reverseOrder={false} />
-    </Box>
+      <footer></footer>
+    </div>
   );
 };

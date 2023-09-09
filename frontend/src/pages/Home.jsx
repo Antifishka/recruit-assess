@@ -12,7 +12,7 @@ export default function Home() {
                 <title>Home</title>
             </Helmet>
 
-            <h2 className='mt-24 sm:mt-30 md:mt-40 lg:mt-46 mb-7 text-semibold text-m sm:text-l md:text-xl text-center'>
+            <h2 className='mt-24 sm:mt-30 md:mt-40 lg:mt-46 mb-8 font-semibold text-m sm:text-l md:text-xl text-center'>
                 Welcome to Recruit Assess
             </h2>
 
@@ -20,7 +20,7 @@ export default function Home() {
                 srcSet={imgURL}
                 alt="owl"
                 width="96px"
-                className='mx-auto mb-7'/>
+                className='mx-auto mb-8'/>
             
             <NavLink to="/register"
                 className="text-background border-b hover:text-accent focus:text-accent transition duration-300 ease-in-out">

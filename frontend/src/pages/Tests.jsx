@@ -21,18 +21,18 @@ export default function Tests() {
     const showContacs = isLoading && !error;
 
     return (
-        <main className='text-center'>
+        <main className='grow shrink basis-auto flex flex-col'>
             <Helmet>
                 <title>Tests</title>
             </Helmet>
 
             <AddButton />
 
-            {showContacs ? <Loader /> : <QuestionList />}
+                {showContacs ? <Loader /> : <QuestionList />}
 
             <button type="submit"
-                className='inline-block max-w-[680px] w-full mx-auto mb-6 px-[14px] py-[12px] rounded-lg shadow-button font-medium uppercase sm:text-s text-secondary bg-background
-                    transition duration-300 ease-in-out hover:bg-accent focus:bg-accent hover:text-primary focus:text-primary'>
+                className='max-w-[680px] w-full mx-auto mb-6 px-[14px] py-[12px] rounded-lg shadow-button font-medium uppercase sm:text-s text-secondary bg-background
+               transition duration-300 ease-in-out hover:bg-accent focus:bg-accent hover:text-primary focus:text-primary'>
                 Result
             </button>
         </main>

@@ -37,14 +37,14 @@ export const QuestionItem = ({ id, title, description, options }) => {
                 </div>
             </div>
             
-            <p className='mb-4 text-xs'>{description}</p>
+            <p className='mb-4 text-xs text-center'>{description}</p>
 
             {options?.map((option ) =>
                 <>
                     <div className='px-4 py-3'>
                         <label className='flex items-center gap-2'>
                             <input type='radio' />
-                            <span className='text-xs'>{option}</span>
+                            <span className='text-xs text-left'>{option}</span>
                         </label>
                     </div>
                 </>
