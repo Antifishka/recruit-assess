@@ -28,11 +28,11 @@ const questionsSlice = createSlice({
             .addCase(addQuestion.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.error = null;
-                state.questions.push(action.payload);
+                state.questions.push(action.payload.newQuestion);
             })
             .addCase(addQuestion.rejected, (state, action) => {
                 state.isLoading = false;
-                state.error = action.payload.newQuestion;
+                state.error = action.payload;
             })
             .addCase(deleteQuestion.pending, (state) => {
                 state.isLoading = true;

@@ -1,7 +1,6 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addQuestion } from "../redux/questions/questions-operations";
-import { selectQuestions } from "../redux/questions/questions-selectors";
 import toast from 'react-hot-toast';
 import { Button } from './Button';
 import { useFormik } from 'formik';
@@ -11,7 +10,7 @@ import PropTypes from 'prop-types';
 const QuestionEditor = ({ onAdd }) => {
     const dispatch = useDispatch();
 
-    const { values, errors, touched, handleBlur, handleChange, handleSubmit, setFieldValue } = useFormik({
+    const { values, errors, touched, handleBlur, handleChange, handleSubmit } = useFormik({
         initialValues: {
             title: '',
             description: '',
@@ -31,11 +30,19 @@ const QuestionEditor = ({ onAdd }) => {
             optionD,
             answer,
         }, { resetForm }) => {
-            console.log(title, description, optionA, optionB, optionC, optionD, answer);
+            const options = [optionA, optionB];
+
+            if (optionC) {
+                options.push(optionC);
+            }
+            if (optionD) {
+                options.push(optionD);
+            }
+
             const question = {
                 title,
                 description,
-                options: [optionA, optionB, optionC, optionD],
+                options,
                 answer,
             };
 
