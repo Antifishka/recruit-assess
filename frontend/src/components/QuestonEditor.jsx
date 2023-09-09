@@ -5,11 +5,10 @@ import { selectQuestions } from "../redux/questions/questions-selectors";
 import toast from 'react-hot-toast';
 import { Button } from './Button';
 import { useFormik } from 'formik';
-// import { basicSchema } from 'helpers/validationSchemas';
+import { basicSchema } from '../helpers/validationSchemas';
 import PropTypes from 'prop-types';
  
 const QuestionEditor = ({ onAdd }) => {
-    const questions = useSelector(selectQuestions);
     const dispatch = useDispatch();
 
     const { values, errors, touched, handleBlur, handleChange, handleSubmit, setFieldValue } = useFormik({
@@ -22,7 +21,7 @@ const QuestionEditor = ({ onAdd }) => {
             optionD: '',
             answer: '',
         },
-        // validationSchema: basicSchema,
+        validationSchema: basicSchema,
         onSubmit: ({
             title,
             description,
@@ -66,13 +65,13 @@ const QuestionEditor = ({ onAdd }) => {
             </label>
 
             <label className="form__label">Question
-                <input
-                    type="text"
+                <textarea
                     name="description"
                     value={values.description}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    className="form__input pl-2" />
+                    placeholder="Enter question..."
+                    className="form__input pl-2 resize-none" />
                 {errors.description && touched.description &&
                     <p className='form__error'>{errors.description}</p>}
             </label>
