@@ -1,5 +1,5 @@
 import { Oval } from  'react-loader-spinner'
-import { theme } from '../globalStyles/theme';
+import { theme } from '../constans/theme';
 
 export const Loader = () => (
     <div className='grow shrink basis-auto'>

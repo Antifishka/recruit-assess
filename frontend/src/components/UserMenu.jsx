@@ -3,7 +3,7 @@ import operations from '../redux/auth/auth-operations';
 import { useAuth } from '../hooks';
 import { useMediaQuery } from 'usehooks-ts';
 import { MdLogout } from 'react-icons/md';
-import { theme } from '../globalStyles/theme';
+import { theme } from '../constans/theme';
 
 export const UserMenu = () => {
     const dispatch = useDispatch();

@@ -11,9 +11,8 @@ import PropTypes from 'prop-types';
 const QuestionEditorUpdate = ({ onUpdate, id }) => {
     const questions = useSelector(selectQuestions);
     const dispatch = useDispatch();
-    console.log("questions", questions);
+ 
     const questionById = questions.filter(q => q._id === id);
-    console.log("questionById", questionById);
 
     const { values, errors, touched, handleBlur, handleChange, handleSubmit } = useFormik({
         initialValues: {

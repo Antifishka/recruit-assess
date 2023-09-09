@@ -1,21 +1,26 @@
 import { useState } from 'react';
 import { useDispatch } from "react-redux";
 import { useMediaQuery } from 'usehooks-ts';
+import { useAuth } from '../hooks';
 import { deleteQuestion } from "../redux/questions/questions-operations";
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import { MdOutlineEdit } from 'react-icons/md';
 import { Modal } from "./Modal";
 import QuestionEditorUpdate from './QuestionEditorUpdate';
+import toast from 'react-hot-toast';
 import PropTypes from 'prop-types';
 
 export const QuestionItem = ({ id, title, description, options }) => {
+    const [isModalOpen, setIsModalOpen] = useState(false);
     const dispatch = useDispatch();
     const matches = useMediaQuery('(min-width: 380px)');
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const { isLoggedIn } = useAuth();
 
     const toggleModal = () => setIsModalOpen(state => !state);
 
     const handleDelete = () => dispatch(deleteQuestion(id));
+
+    const denyAction = () => toast.error('Please log in!');
 
     return (
         <li className="max-w-[680px] w-full px-5 py-4 border border-border rounded-3xl">
@@ -27,14 +32,14 @@ export const QuestionItem = ({ id, title, description, options }) => {
 
                 <div className='flex'>
                     <button type="button"
-                        onClick={toggleModal}
+                        onClick={isLoggedIn ? toggleModal : denyAction}
                         className='question__btn'>
                         <MdOutlineEdit size={matches ? "20" : "17"}
                             className='fill-background'/>
                     </button>
                     
                     <button type="button"
-                        onClick={handleDelete}
+                        onClick={isLoggedIn ? handleDelete : denyAction}
                         className='question__btn'>
                         <RiDeleteBin6Line size={matches ? "20" : "17"}
                             className='fill-background'/>
