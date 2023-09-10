@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-axios.defaults.baseURL = "https://recruit-assess-api.onrender.com";
+axios.defaults.baseURL = import.meta.env.VITE_HOST_URL;
 
 // Utility to add JWT
 const setAuthHeader = token => {

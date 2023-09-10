@@ -23,8 +23,15 @@ export default function Tests() {
     const getPercentageScore = (correctCount) => {
         console.log("correctCount", correctCount);
         const totalQuestions = questions.length;
-        const percentage = (correctCount / totalQuestions) * 100;
+        return Math.round((correctCount / totalQuestions) * 100);
+    }
+
+    const handleFormSubmit = (e) => {
+        e.preventDefault();
+
+        const percentage = getPercentageScore();
         console.log("percentage", percentage);
+
         setResult(percentage);
     }
 
@@ -38,19 +45,19 @@ export default function Tests() {
 
             <AddButton />
 
-        
-            {showQuestions
-                ? <Loader />
-                : <QuestionList questions={questions} getScore={getPercentageScore} />}
+            <form onSubmit={handleFormSubmit}>
+                {showQuestions
+                    ? <Loader />
+                    : <QuestionList questions={questions} getScore={getPercentageScore} />}
 
-            <button type="button" 
-                onClick={getPercentageScore}
-                className='max-w-[680px] w-full mx-auto mb-6 px-[14px] py-[12px] rounded-lg shadow-button font-medium uppercase sm:text-s text-secondary bg-background
-                transition duration-300 ease-in-out hover:bg-accent focus:bg-accent hover:text-primary focus:text-primary'>
-                Result
-            </button> 
+                <button type="submit"
+                    className='max-w-[680px] w-full mx-auto mb-6 px-[14px] py-[12px] rounded-lg shadow-button font-medium uppercase sm:text-s text-secondary bg-background
+                    transition duration-300 ease-in-out hover:bg-accent focus:bg-accent hover:text-primary focus:text-primary'>
+                    Result
+                </button> 
+            </form>
 
-            {result && <p>Правильних відповідей: {result}%</p>}
+            {result && <p className='mb-6'>Правильних відповідей: {result}%</p>}
         </main>
     );
 }
