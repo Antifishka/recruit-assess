@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Helmet } from 'react-helmet';
-import { selectIsLoading, selectError } from '../redux/questions/questions-selectors';
+import { selectQuestions, selectIsLoading, selectError } from '../redux/questions/questions-selectors';
 import { fetchQuestions } from '../redux/questions/questions-operations';
 import { AddButton } from "../components/AddButton";
 import { Loader } from '../components/Loader';
@@ -9,7 +9,9 @@ import { QuestionList } from '../components/QuestionList';
 import toast from 'react-hot-toast';
 
 export default function Tests() {
+    const [result, setResult] = useState(null);
     const dispatch = useDispatch();
+    const questions = useSelector(selectQuestions);
     const isLoading = useSelector(selectIsLoading);
     const error = useSelector(selectError);
 
@@ -18,23 +20,37 @@ export default function Tests() {
         error && toast.error('No response from server!');
     }, [dispatch, error]);
 
-    const showContacs = isLoading && !error;
+    const getPercentageScore = (correctCount) => {
+        console.log("correctCount", correctCount);
+        const totalQuestions = questions.length;
+        const percentage = (correctCount / totalQuestions) * 100;
+        console.log("percentage", percentage);
+        setResult(percentage);
+    }
+
+    const showQuestions = isLoading && !error;
 
     return (
-        <main className='grow shrink basis-auto flex flex-col'>
+        <main className='grow shrink basis-auto flex flex-col text-center'>
             <Helmet>
                 <title>Tests</title>
             </Helmet>
 
             <AddButton />
 
-                {showContacs ? <Loader /> : <QuestionList />}
+        
+            {showQuestions
+                ? <Loader />
+                : <QuestionList questions={questions} getScore={getPercentageScore} />}
 
-            <button type="submit"
+            <button type="button" 
+                onClick={getPercentageScore}
                 className='max-w-[680px] w-full mx-auto mb-6 px-[14px] py-[12px] rounded-lg shadow-button font-medium uppercase sm:text-s text-secondary bg-background
-               transition duration-300 ease-in-out hover:bg-accent focus:bg-accent hover:text-primary focus:text-primary'>
+                transition duration-300 ease-in-out hover:bg-accent focus:bg-accent hover:text-primary focus:text-primary'>
                 Result
-            </button>
+            </button> 
+
+            {result && <p>Правильних відповідей: {result}%</p>}
         </main>
     );
 }

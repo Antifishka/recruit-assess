@@ -10,7 +10,8 @@ import QuestionEditorUpdate from './QuestionEditorUpdate';
 import toast from 'react-hot-toast';
 import PropTypes from 'prop-types';
 
-export const QuestionItem = ({ id, title, description, options }) => {
+export const QuestionItem = ({ id, title, description, options, onAnswerChange }) => {
+    const [selectedAnswer, setSelectedAnswer] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const dispatch = useDispatch();
     const matches = useMediaQuery('(min-width: 380px)');
@@ -21,6 +22,12 @@ export const QuestionItem = ({ id, title, description, options }) => {
     const handleDelete = () => dispatch(deleteQuestion(id));
 
     const denyAction = () => toast.error('Please log in!');
+
+    const handleOptionChange = (option) => {
+        setSelectedAnswer(option);
+
+        onAnswerChange(option);
+    };
 
     return (
         <li className="max-w-[680px] w-full px-5 py-4 border border-border rounded-3xl">
@@ -52,7 +59,11 @@ export const QuestionItem = ({ id, title, description, options }) => {
             {options?.map((option, idx ) =>
                 <div key={idx} className='px-4 py-3'>
                     <label className='flex items-center gap-2'>
-                        <input type='radio' />
+                        <input
+                            type='radio'
+                            name={`question_${id}`}
+                            checked={selectedAnswer === option}
+                            onChange={() => handleOptionChange(option)} />
                         <span className='text-xs text-left'>{option}</span>
                     </label>
                 </div>

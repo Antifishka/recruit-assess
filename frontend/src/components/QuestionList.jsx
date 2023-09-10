@@ -1,9 +1,23 @@
-import { useSelector } from "react-redux";
-import { selectQuestions } from "../redux/questions/questions-selectors";
 import { QuestionItem } from "./QuestionItem";
+import PropTypes from 'prop-types';
 
-export const QuestionList = () => {
-    const questions = useSelector(selectQuestions);
+export const QuestionList = ({ questions, getScore }) => {
+    console.log("questions", questions);
+    let correctCount = 0;
+
+    const calculateCorrectAnswers = (selectedAnswer) => {
+        console.log('Selected answer:', selectedAnswer);
+
+        questions.forEach((question) => {
+            if (selectedAnswer === question.answer) {
+                correctCount++;
+            }
+        });
+     
+        getScore(correctCount);
+
+        return correctCount;
+    }
 
     return (
         <ul className="grow shrink basis-auto flex flex-col items-center gap-9 mb-6"> 
@@ -14,7 +28,11 @@ export const QuestionList = () => {
                     title={title}
                     description={description}
                     options={options}
-                    answer={answer} />)}
+                    onAnswerChange={calculateCorrectAnswers} />)}
         </ul>
     )        
+};
+
+QuestionList.propTypes = {
+    getScore: PropTypes.func.isRequired,
 };

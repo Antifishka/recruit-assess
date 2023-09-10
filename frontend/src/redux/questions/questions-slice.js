@@ -28,7 +28,7 @@ const questionsSlice = createSlice({
             .addCase(addQuestion.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.error = null;
-                state.questions.push(action.payload.newQuestion);
+                state.questions.unshift(action.payload.newQuestion);
             })
             .addCase(addQuestion.rejected, (state, action) => {
                 state.isLoading = false;
@@ -37,10 +37,11 @@ const questionsSlice = createSlice({
             .addCase(deleteQuestion.pending, (state) => {
                 state.isLoading = true;
             })
-            .addCase(deleteQuestion.fulfilled, (state, action) => {
+            .addCase(deleteQuestion.fulfilled, (state, { payload }) => {
+                console.log("payload", payload);
                 state.isLoading = false;
                 state.error = null;
-                const index = state.questions.findIndex(question => question.id === action.payload.id);
+                const index = state.questions.findIndex(q => q._id === payload.id);
                 state.questions.splice(index, 1);
             })
             .addCase(deleteQuestion.rejected, (state, action) => {
@@ -50,11 +51,11 @@ const questionsSlice = createSlice({
             .addCase(updateQuestion.pending, (state) => {
                 state.isLoading = true;
             })
-            .addCase(updateQuestion.fulfilled, (state, action) => {
+            .addCase(updateQuestion.fulfilled, (state, { payload }) => {
                 state.isLoading = false;
                 state.error = null;
-                const index = state.questions.findIndex(question => question.id === action.payload.id);
-                state.questions.splice(index, 1, action.payload.updatedQuestion);
+                const index = state.questions.findIndex(q => q._id === payload.updatedQuestion._id);
+                state.questions.splice(index, 1, payload.updatedQuestion);
             })
             .addCase(updateQuestion.rejected, (state, action) => {
                 state.isLoading = false;
