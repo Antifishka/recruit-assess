@@ -7,7 +7,7 @@ export default function Home() {
     const imgURL = `${imgPath} 1x, ${imgPathRetina} 2x`;
 
     return (
-        <main className='text-center'>
+        <main className='grow shrink basis-auto text-center'>
             <Helmet>
                 <title>Home</title>
             </Helmet>

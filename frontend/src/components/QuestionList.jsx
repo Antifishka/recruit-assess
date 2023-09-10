@@ -1,22 +1,16 @@
+import { useSelector } from 'react-redux';
+import { selectQuestions } from '../redux/questions/questions-selectors';
+import { calculateCorrectAnswers } from '../helpers/calculateCorrectAnswers';
 import { QuestionItem } from "./QuestionItem";
 import PropTypes from 'prop-types';
 
-export const QuestionList = ({ questions, getScore }) => {
-    console.log("questions", questions);
-    let correctCount = 0;
+export const QuestionList = ({ getScore }) => {
+    const questions = useSelector(selectQuestions);
+    
+    const getCorrectCount = (selectedAnswer) => {
+        const correctCount = calculateCorrectAnswers(questions, selectedAnswer);
 
-    const calculateCorrectAnswers = (selectedAnswer) => {
-        console.log('Selected answer:', selectedAnswer);
-
-        questions.forEach((question) => {
-            if (selectedAnswer === question.answer) {
-                correctCount++;
-            }
-        });
-     
         getScore(correctCount);
-
-        return correctCount;
     }
 
     return (
@@ -28,7 +22,7 @@ export const QuestionList = ({ questions, getScore }) => {
                     title={title}
                     description={description}
                     options={options}
-                    onAnswerChange={calculateCorrectAnswers} />)}
+                    onAnswerChange={getCorrectCount} />)}
         </ul>
     )        
 };

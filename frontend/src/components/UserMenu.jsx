@@ -8,7 +8,6 @@ import { theme } from '../constans/theme';
 export const UserMenu = () => {
     const dispatch = useDispatch();
     const { user } = useAuth();
-    console.log("user", user);
     const matches = useMediaQuery('(min-width: 640px)');
 
     return (

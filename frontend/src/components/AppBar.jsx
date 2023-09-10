@@ -4,7 +4,6 @@ import { NavLink } from "react-router-dom";
 
 export const AppBar = () => {
     const { isLoggedIn } = useAuth(); 
-    console.log("isLoggedIn", isLoggedIn)
 
     return (
         <header className="flex items-center justify-between py-[8px] px-0 border-b border-primary">

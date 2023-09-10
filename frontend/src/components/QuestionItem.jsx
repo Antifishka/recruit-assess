@@ -61,7 +61,7 @@ export const QuestionItem = ({ id, title, description, options, onAnswerChange }
                     <label className='flex items-center gap-2'>
                         <input
                             type='radio'
-                            name={`question_${id}`}
+                            name={`option-${idx}`}
                             checked={selectedAnswer === option}
                             onChange={() => handleOptionChange(option)} />
                         <span className='text-xs text-left'>{option}</span>
@@ -82,4 +82,5 @@ QuestionItem.propTypes = {
     title: PropTypes.string,
     description: PropTypes.string.isRequired,
     options: PropTypes.arrayOf(PropTypes.string).isRequired,
+    onAnswerChange: PropTypes.func.isRequired,
 };
