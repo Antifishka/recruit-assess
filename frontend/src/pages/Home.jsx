@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import imgPath from '../assets/images/owl.png';
 import imgPathRetina from '../assets/images/owl@2x.png';
 import { NavLink } from "react-router-dom";

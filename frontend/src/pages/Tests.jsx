@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { selectQuestions, selectIsLoading, selectError } from '../redux/questions/questions-selectors';
 import { fetchQuestions } from '../redux/questions/questions-operations';
 import { AddButton } from "../components/AddButton";

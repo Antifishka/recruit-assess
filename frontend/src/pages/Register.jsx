@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { RegisterForm } from '../components/RegisterForm';
 import { NavLink } from "react-router-dom";
 
@@ -7,7 +7,7 @@ export default function Register() {
         <main className='pt-8 text-center'>
             <Helmet>
                 <title>Registration</title>
-                </Helmet>
+            </Helmet>
                 
             <RegisterForm />
 

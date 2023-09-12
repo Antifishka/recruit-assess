@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { LoginForm } from '../components/LoginForm';
 import { NavLink } from "react-router-dom";
 
