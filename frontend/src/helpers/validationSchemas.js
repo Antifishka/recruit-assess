@@ -30,5 +30,9 @@ export const basicSchema = yup.object().shape({
     answer: yup
         .string()
         .trim()
+        .test('is-valid-answer', 'Answer must match one of the options', function (value) {
+            const { optionA, optionB, optionC, optionD } = this.parent;
+            return [optionA, optionB, optionC, optionD].includes(value);
+        })
         .required('Answer is required'),
 });
