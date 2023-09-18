@@ -16,7 +16,6 @@ export default function Tests() {
     const isLoading = useSelector(selectIsLoading);
     const error = useSelector(selectError);
     const correctCount = useSelector(selectCorrectCount)
-    console.log("correctCount", correctCount);
 
     useEffect(() => {
         dispatch(fetchQuestions());
@@ -25,7 +24,6 @@ export default function Tests() {
 
     const handleResultClick = () => {
         setResult(Math.round((correctCount / questions.length) * 100));
-        console.log("result", Math.round((correctCount / questions.length) * 100));
     }
 
     const showQuestions = isLoading && !error;

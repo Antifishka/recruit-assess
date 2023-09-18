@@ -37,10 +37,10 @@ const questionsSlice = createSlice({
             .addCase(deleteQuestion.pending, (state) => {
                 state.isLoading = true;
             })
-            .addCase(deleteQuestion.fulfilled, (state, { payload }) => {
+            .addCase(deleteQuestion.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.error = null;
-                const index = state.questions.findIndex(q => q._id === payload.id);
+                const index = state.questions.findIndex(q => q._id === action.payload);
                 state.questions.splice(index, 1);
             })
             .addCase(deleteQuestion.rejected, (state, action) => {

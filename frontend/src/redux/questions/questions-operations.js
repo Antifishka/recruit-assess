@@ -29,8 +29,8 @@ export const deleteQuestion = createAsyncThunk(
     "questions/deleteQuestion",
     async (questionId, thunkAPI) => {
         try {
-            const response = await axios.delete(`/questions/${questionId}`);
-            return response.data;
+            await axios.delete(`/questions/${questionId}`);
+            return questionId;
         } catch (e) {
             return thunkAPI.rejectWithValue(e.message);
         }

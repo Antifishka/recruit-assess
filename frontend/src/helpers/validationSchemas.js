@@ -18,14 +18,26 @@ export const basicSchema = yup.object().shape({
     optionB: yup
         .string()
         .trim()
+        .test('is-not-same-as-other-options', 'Option B must be different from other options', function (value) {
+            const { optionA, optionC, optionD } = this.parent;
+            return value !== optionA && value !== optionC && value !== optionD;
+        })
         .required('Option B is required'),
     optionC: yup
         .string()
         .trim()
+        .test('is-not-same-as-other-options', 'Option C must be different from other options', function (value) {
+            const { optionA, optionB, optionD } = this.parent;
+            return !value ? true : value !== optionA && value !== optionB && value !== optionD;
+        })
         .optional(),
     optionD: yup
         .string()
         .trim()
+        .test('is-not-same-as-other-options', 'Option D must be different from other options', function (value) {
+            const { optionA, optionB, optionC } = this.parent;
+            return !value ? true : value !== optionA && value !== optionB && value !== optionC;
+        })
         .optional(),
     answer: yup
         .string()
