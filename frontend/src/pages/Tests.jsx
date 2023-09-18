@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Helmet } from 'react-helmet-async';
 import { selectQuestions, selectIsLoading, selectError } from '../redux/questions/questions-selectors';
+import { selectCorrectCount } from '../redux/count/count-selectors';
 import { fetchQuestions } from '../redux/questions/questions-operations';
 import { AddButton } from "../components/AddButton";
 import { Loader } from '../components/Loader';
@@ -14,22 +15,17 @@ export default function Tests() {
     const questions = useSelector(selectQuestions);
     const isLoading = useSelector(selectIsLoading);
     const error = useSelector(selectError);
+    const correctCount = useSelector(selectCorrectCount)
+    console.log("correctCount", correctCount);
 
     useEffect(() => {
         dispatch(fetchQuestions());
         error && toast.error('No response from server!');
     }, [dispatch, error]);
 
-    const getPercentageScore = (correctCount) => {
-        console.log("correctCount", correctCount);
-        const totalQuestions = questions.length;
-        return Math.round((correctCount / totalQuestions) * 100);
-    }
-
     const handleResultClick = () => {
-        const percentage = getPercentageScore()
-        setResult(percentage);
-        console.log("percentage", percentage);
+        setResult(Math.round((correctCount / questions.length) * 100));
+        console.log("result", Math.round((correctCount / questions.length) * 100));
     }
 
     const showQuestions = isLoading && !error;
@@ -42,9 +38,7 @@ export default function Tests() {
 
             <AddButton />
 
-            {showQuestions
-                ? <Loader />
-                : <QuestionList getScore={getPercentageScore} />}
+            {showQuestions ? <Loader /> : <QuestionList />}
 
             <button type="submit"
                 onClick={handleResultClick}
@@ -52,8 +46,8 @@ export default function Tests() {
                 transition duration-300 ease-in-out hover:bg-accent focus:bg-accent hover:text-primary focus:text-primary'>
                 Result
             </button> 
-
-            {result && <p className='mb-6'>Правильних відповідей: {result}%</p>}
+            
+            {result !== null && <p className='mb-6'>Правильних відповідей: {result}%</p>}
         </main>
     );
 }

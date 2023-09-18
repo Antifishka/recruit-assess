@@ -1,0 +1,1 @@
+export const selectCorrectCount = state => state.count.count;

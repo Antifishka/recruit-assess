@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useMediaQuery } from 'usehooks-ts';
 import { useAuth } from '../hooks';
 import { deleteQuestion } from "../redux/questions/questions-operations";
+import { setCorrectCount } from "../redux/count/count-slice";
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import { MdOutlineEdit } from 'react-icons/md';
 import { Modal } from "./Modal";
@@ -10,7 +11,7 @@ import QuestionEditorUpdate from './QuestionEditorUpdate';
 import toast from 'react-hot-toast';
 import PropTypes from 'prop-types';
 
-export const QuestionItem = ({ id, title, description, options, onAnswerChange }) => {
+export const QuestionItem = ({ id, title, description, options, answer }) => {
     const [selectedAnswer, setSelectedAnswer] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const dispatch = useDispatch();
@@ -26,7 +27,9 @@ export const QuestionItem = ({ id, title, description, options, onAnswerChange }
     const handleOptionChange = (option) => {
         setSelectedAnswer(option);
 
-        onAnswerChange(option);
+        if (answer === option) {
+            dispatch(setCorrectCount(0));
+        }
     };
 
     return (
@@ -82,5 +85,5 @@ QuestionItem.propTypes = {
     title: PropTypes.string,
     description: PropTypes.string.isRequired,
     options: PropTypes.arrayOf(PropTypes.string).isRequired,
-    onAnswerChange: PropTypes.func.isRequired,
+    answer: PropTypes.string.isRequired,
 };

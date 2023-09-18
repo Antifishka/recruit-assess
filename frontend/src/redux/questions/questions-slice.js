@@ -38,7 +38,6 @@ const questionsSlice = createSlice({
                 state.isLoading = true;
             })
             .addCase(deleteQuestion.fulfilled, (state, { payload }) => {
-                console.log("payload", payload);
                 state.isLoading = false;
                 state.error = null;
                 const index = state.questions.findIndex(q => q._id === payload.id);
